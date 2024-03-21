@@ -146,7 +146,7 @@ export default function HomePage(props: {link_records?: LinkRecord[], config_rec
             {/*main link*/}
             {modal.link.url === curHref ? (
               <div className={'relative aspect-video w-full rounded-3xl overflow-hidden'}>
-                <Image src={'/opengraph-image'} alt={'og-image'} fill={true} objectFit={'cover'} objectPosition={'center'} />
+                <Image src={`${process.env.NEXT_PUBLIC_BASE_URL}/opengraph-image?${new Date().getTime()}`} alt={'og-image'} fill={true} objectFit={'cover'} objectPosition={'center'} />
               </div>
             ) : (
               <motion.a

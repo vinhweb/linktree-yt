@@ -4,6 +4,9 @@ async function getConfigs(){
 	const res = await fetch(`https://api.airtable.com/v0/appmUcMkz92HvN9gi/configs?sort%5B0%5D%5Bfield%5D=id&sort%5B0%5D%5Bdirection%5D=asc`, {
 		headers: {
 			'Authorization': `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_KEY}`
+		},
+		next: {
+			tags: ['collection'],
 		}
 	})
 
@@ -97,6 +100,10 @@ export default async function Image() {
 					weight: 400,
 				},
 			],
+			headers: {
+				"Cache-Control":
+					"private, no-cache, no-store, max-age=0, must-revalidate",
+			},
 		}
 	)
 }

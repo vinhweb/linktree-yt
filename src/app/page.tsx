@@ -5,7 +5,8 @@ async function getLinks(){
 	const res = await fetch(`https://api.airtable.com/v0/appmUcMkz92HvN9gi/links?sort%5B0%5D%5Bfield%5D=id&sort%5B0%5D%5Bdirection%5D=asc`, {
 		headers: {
 			'Authorization': `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_KEY}`
-		}
+		},
+		next: { tags: ['collection'] }
 	})
 
 	if(!res.ok){
@@ -19,7 +20,8 @@ async function getConfigs(){
 	const res = await fetch(`https://api.airtable.com/v0/appmUcMkz92HvN9gi/configs?sort%5B0%5D%5Bfield%5D=id&sort%5B0%5D%5Bdirection%5D=asc`, {
 		headers: {
 			'Authorization': `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_KEY}`
-		}
+		},
+		next: { tags: ['collection'] }
 	})
 
 	if(!res.ok){
@@ -37,7 +39,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
 	return {
 		title: title || 'Vinh Web',
-		description: description || ''
+		description: description || '',
+		openGraph: {
+			title: title || 'Vinh Web',
+			description: description || '',
+			images: [`${process.env.NEXT_PUBLIC_BASE_URL}/opengraph-image`]
+		}
 	}
 }
 
